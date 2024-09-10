@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,7 @@ public class ScreenCalculator extends javax.swing.JFrame {
     double secondNumber;
     double result;
     String operation;
+    double memoryReturn;
 
     /**
      * Creates new form ScreemCalculator
@@ -99,21 +101,41 @@ public class ScreenCalculator extends javax.swing.JFrame {
         buttonAddInMemory.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonAddInMemory.setForeground(new java.awt.Color(0, 0, 0));
         buttonAddInMemory.setText("M+");
+        buttonAddInMemory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddInMemoryActionPerformed(evt);
+            }
+        });
 
         ButtonMemoryClear.setBackground(new java.awt.Color(153, 153, 153));
         ButtonMemoryClear.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ButtonMemoryClear.setForeground(new java.awt.Color(0, 0, 0));
         ButtonMemoryClear.setText("MC");
+        ButtonMemoryClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonMemoryClearActionPerformed(evt);
+            }
+        });
 
         buttonSubtractFromMemory.setBackground(new java.awt.Color(153, 153, 153));
         buttonSubtractFromMemory.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonSubtractFromMemory.setForeground(new java.awt.Color(0, 0, 0));
         buttonSubtractFromMemory.setText("M-");
+        buttonSubtractFromMemory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSubtractFromMemoryActionPerformed(evt);
+            }
+        });
 
         buttonMemoryRecall.setBackground(new java.awt.Color(153, 153, 153));
         buttonMemoryRecall.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonMemoryRecall.setForeground(new java.awt.Color(0, 0, 0));
         buttonMemoryRecall.setText("MR");
+        buttonMemoryRecall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMemoryRecallActionPerformed(evt);
+            }
+        });
 
         buttonMoreless.setBackground(new java.awt.Color(0, 153, 153));
         buttonMoreless.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -426,10 +448,12 @@ public class ScreenCalculator extends javax.swing.JFrame {
              displayText.setText(resultformated);
              break;
          case "/":
+             if(secondNumber != 0){
              result = firstNumber + secondNumber;
              resultformated = String.format("%f", result);
              displayText.setText(resultformated);
              break;
+             }
          case "*":
              result = firstNumber + secondNumber;
              resultformated = String.format("%f", result);
@@ -438,7 +462,9 @@ public class ScreenCalculator extends javax.swing.JFrame {
              default:
                  throw  new AssertionError();
       }      
-     }
+     } else{
+           JOptionPane.showMessageDialog(this,"Operação não permitida");
+       }
     }//GEN-LAST:event_buttonEqualsActionPerformed
 
     private void buttonThreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonThreeActionPerformed
@@ -536,8 +562,43 @@ public class ScreenCalculator extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonMultActionPerformed
 
     private void buttonMorelessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMorelessActionPerformed
-        // TODO add your handling code here:
+       double resultformated = Double.parseDouble(
+       String.valueOf(displayText.getText()));
+       resultformated = resultformated * (-1);
+       displayText.setText(String.valueOf(resultformated));
     }//GEN-LAST:event_buttonMorelessActionPerformed
+
+    private void buttonMemoryRecallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMemoryRecallActionPerformed
+        displayText.setText("" + memoryReturn);
+    }//GEN-LAST:event_buttonMemoryRecallActionPerformed
+
+    private void buttonSubtractFromMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubtractFromMemoryActionPerformed
+      double memoryResult;
+       String resultFormated;
+       double memoryMore = Double.parseDouble(displayText.getText());
+       memoryResult = memoryReturn - memoryMore;
+       resultFormated = String.format("2.f", memoryResult);
+       displayText.setText (resultFormated);
+       memoryReturn = memoryResult;
+    }//GEN-LAST:event_buttonSubtractFromMemoryActionPerformed
+
+    private void ButtonMemoryClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMemoryClearActionPerformed
+      memoryReturn = 0;
+      displayText.setText("");
+    }//GEN-LAST:event_ButtonMemoryClearActionPerformed
+
+    private void buttonAddInMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddInMemoryActionPerformed
+       double memoryResult;
+       String resultFormated;
+       double memoryMore = Double.parseDouble(displayText.getText());
+       memoryResult = memoryReturn + memoryMore;
+       resultFormated = String.format("2.f", memoryResult);
+       displayText.setText (resultFormated);
+       memoryReturn = memoryResult;
+       
+       
+       
+    }//GEN-LAST:event_buttonAddInMemoryActionPerformed
 
     /**
      * @param args the command line arguments

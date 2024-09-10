@@ -199,6 +199,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="M+"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddInMemoryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="ButtonMemoryClear">
       <Properties>
@@ -213,6 +216,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MC"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonMemoryClearActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="buttonSubtractFromMemory">
       <Properties>
@@ -227,6 +233,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="M-"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSubtractFromMemoryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="buttonMemoryRecall">
       <Properties>
@@ -241,6 +250,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonMemoryRecallActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="buttonMoreless">
       <Properties>
