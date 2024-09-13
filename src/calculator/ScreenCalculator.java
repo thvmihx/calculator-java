@@ -439,25 +439,29 @@ public class ScreenCalculator extends javax.swing.JFrame {
      switch (operation){
          case "+":
              result = firstNumber + secondNumber;
-             resultformated = String.format("%f", result);
+             resultformated = String.format("%.2f", result);
              displayText.setText(resultformated);
+             memoryReturn =result;
              break;
          case "-":
-             result = firstNumber + secondNumber;
-             resultformated = String.format("%f", result);
+             result = firstNumber - secondNumber;
+             resultformated = String.format("%.2f", result);
              displayText.setText(resultformated);
+             memoryReturn =result;
              break;
          case "/":
              if(secondNumber != 0){
              result = firstNumber + secondNumber;
-             resultformated = String.format("%f", result);
+             resultformated = String.format("%.4f", result);
              displayText.setText(resultformated);
+             memoryReturn =result;
              break;
              }
          case "*":
-             result = firstNumber + secondNumber;
-             resultformated = String.format("%f", result);
+             result = firstNumber * secondNumber;
+             resultformated = String.format("%.2f", result);
              displayText.setText(resultformated);
+             memoryReturn =result;
              break;
              default:
                  throw  new AssertionError();
@@ -474,17 +478,22 @@ public class ScreenCalculator extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonThreeActionPerformed
 
     private void buttonLessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLessActionPerformed
-     firstNumber = Double.parseDouble(displayText.getText());
-     displayText.setText("");
-     operation = "-";
+    if(displayText.getText().equals("")){
+     } else {
+       firstNumber = Double.parseDouble(displayText.getText());
+       displayText.setText("");
+       operation = "-";
+    }                  
     }//GEN-LAST:event_buttonLessActionPerformed
 
     private void buttonDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDivisionActionPerformed
-     firstNumber = Double.parseDouble(displayText.getText());
+     if(displayText.getText().equals("")){
+     } else {
+       firstNumber = Double.parseDouble(displayText.getText());
        displayText.setText("");
        operation = "/";
     }//GEN-LAST:event_buttonDivisionActionPerformed
-
+    }
     private void buttonZeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZeroActionPerformed
         String input;
         input = displayText.getText() + buttonZero.getText();
@@ -550,15 +559,21 @@ public class ScreenCalculator extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonClearActionPerformed
 
     private void buttonMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMoreActionPerformed
+       if(displayText.getText().equals("")){
+     } else {
        firstNumber = Double.parseDouble(displayText.getText());
        displayText.setText("");
        operation = "+";
+    }                  
     }//GEN-LAST:event_buttonMoreActionPerformed
 
     private void buttonMultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMultActionPerformed
-     firstNumber = Double.parseDouble(displayText.getText());
+     if(displayText.getText().equals("")){
+     } else {
+       firstNumber = Double.parseDouble(displayText.getText());
        displayText.setText("");
        operation = "*";
+    }                  
     }//GEN-LAST:event_buttonMultActionPerformed
 
     private void buttonMorelessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMorelessActionPerformed
@@ -577,7 +592,7 @@ public class ScreenCalculator extends javax.swing.JFrame {
        String resultFormated;
        double memoryMore = Double.parseDouble(displayText.getText());
        memoryResult = memoryReturn - memoryMore;
-       resultFormated = String.format("2.f", memoryResult);
+       resultFormated = String.format("%.2f", memoryResult);
        displayText.setText (resultFormated);
        memoryReturn = memoryResult;
     }//GEN-LAST:event_buttonSubtractFromMemoryActionPerformed
@@ -592,7 +607,7 @@ public class ScreenCalculator extends javax.swing.JFrame {
        String resultFormated;
        double memoryMore = Double.parseDouble(displayText.getText());
        memoryResult = memoryReturn + memoryMore;
-       resultFormated = String.format("2.f", memoryResult);
+       resultFormated = String.format("%.2f", memoryResult);
        displayText.setText (resultFormated);
        memoryReturn = memoryResult;
        
